@@ -1,7 +1,8 @@
 const User = require('../models/userModel');
+const AppError = require('../utils/appError');
 
 exports.getAllUsers = async (req, res) => {
-  const users = await User.find({ active: true }).select('-__v');
+  const users = await User.find().select('-__v');
   res.status(200).json({
     status: 'success',
     data: {
@@ -13,16 +14,8 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   const id = req.params.id;
-  const user = await User.findById(id);
+  const user = await User.findById(id).select('-__v');
   res.status(200).json({
-    status: 'success',
-    data: user,
-  });
-};
-
-exports.createUser = async (req, res) => {
-  const user = await User.create(req.body);
-  res.status(201).json({
     status: 'success',
     data: user,
   });
@@ -33,6 +26,7 @@ exports.updateUser = async (req, res) => {
   const user = await User.findByIdAndUpdate(id, req.body, {
     runValidators: true,
   });
+
   res.status(204).json({
     status: 'success',
     data: user,
@@ -41,6 +35,6 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   const id = req.params.id;
-  await User.findByIdAndUpdate(id, { active: false }, { runValidators: true });
+  await User.findByIdAndDelete(id);
   res.status(410).json();
 };
