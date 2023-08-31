@@ -1,4 +1,5 @@
 import { addProduct } from '../ajax/addProduct.js';
+import { handleProductClick } from '../ajax/handlerProductClick.js';
 
 function renderProducts(products) {
   const cardContainer = document.getElementById('cards');
@@ -13,12 +14,14 @@ function renderProducts(products) {
     const price = product.price;
 
     const card = `
-    <div class="card">
-    <div class="card-body">
+    <div class="card" >
+    <div class="card-body" >
+    <a id="${index}" class="btn btn-primary product col" role="button">
       <img
         id="product-img-${index}"
         src="${image}"
         style="margin-left: 0px; height: 150px; width: 200px"
+        class="rounded-circle"
       />
       <h3 class="text-center card-title" id="product-company-${index}">
         ${company}
@@ -34,14 +37,15 @@ function renderProducts(products) {
         class="btn btn-primary"
         id="add-${index}"
         type="button"
-        style="margin-left: 14px"
+        style="margin-left: 14px ; background-color: rgb(80, 121, 102);"
       >
         add to cart
       </button>
+      </a>
     </div>
   </div>`;
 
-    if (index % 3 === 0) {
+    if (index % 5 === 0) {
       currentCardGroup = document.createElement('div');
       currentCardGroup.classList.add('card-group');
       cardContainer.appendChild(currentCardGroup);
@@ -57,7 +61,13 @@ function renderProducts(products) {
   for (let i = 0; i < j; i++) {
     $(`#add-${i}`).click(function (e) {
       e.preventDefault();
+      e.stopPropagation(); // Prevent event from bubbling up
       addProduct(e, id[i]);
+    })
+
+    $(`#${i}`).click(function (e) {
+      e.preventDefault()
+      handleProductClick(e, id[i]);
     });
   }
 }
