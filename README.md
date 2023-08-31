@@ -13,7 +13,7 @@ Welcome to the shoes Store repository! This is a web application developed as pa
 
 The shoes Store offers the following features:
 
-1. Shoes Staff Shop: Browse and purchase surf-related products.
+1. Shoes Staff Shop: Browse and purchase shoes-related products.
 2. Webcams: View live feeds from webcams placed in various beaches.
 3. Facbook API: post and look over the last purchases.
 4. Chat Web Socket: Engage in real-time chat-bot to get live support.
@@ -54,7 +54,7 @@ Once you have the project set up and running, you can start exploring the shoes 
   - When you reach the payment page we would add you to our Facbook page as one of the engaged customers.
 - Chat Web Socket:
   - Engage in real-time chat with other users on the website.
-  - Use the chat feature to discuss surfing, ask questions, or interact with fellow shoes enthusiasts.
+  - Use the chat feature to discuss shoes, ask questions, or interact with fellow shoes enthusiasts.
 - Login:
   - Create a new account or log in using existing credentials.
   - Manage your profile information, including email and password.
